@@ -1,0 +1,38 @@
+import random
+
+Nr_Cards = int(input("How many cards will you play in total (excluding Commander(s)?"))
+Nr_Lands = int(input("How many lands will you play?"))
+Nr_Spells = Nr_Cards - Nr_Lands
+Ratio = Nr_Lands / Nr_Cards
+Deck = []
+
+c = 0
+d = 0
+while c < Nr_Lands:
+    Deck.append("L")
+    c += 1
+while d < Nr_Spells:
+    Deck.append("S")
+    d += 1
+
+# random.shuffle(Deck)                 #real decks are shuffled
+
+nr_simulations = 10000                     #you can get more accuracy by increasing this number, but 10000 should be fine for most machines and purposes
+land_counts = []
+e = 0
+while e < nr_simulations:                      #in each simulation...
+    hand = []
+    f = 0
+    while f < 7:                                 #draw a staring hand
+        hand.append(random.choice(Deck))
+        f += 1
+    land_counts.append(hand.count("L"))           #count the lands, remember the result in the list "land_counts"
+    e += 1
+
+#print(land_counts)
+g = 0
+while g < 8: 
+    chance = round((land_counts.count(g) / nr_simulations) * 100, 3)               #count how often there are 0, 1, ... 7 lands in the hand
+    print(chance, "% chance to have", g, "lands in your starting hand")            #and return a percentage
+    g += 1
+
