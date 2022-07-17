@@ -1,0 +1,21 @@
+# this script takes input from the user, checks if the number is prime, and returns a list of the divisors
+
+number = int(input("Please enter your number"))     #getting the number
+
+divisors = [1]                                      #the divisors are collected in a list, every integer is divisible by 1, so it can be prefilled
+
+c = 2                             
+while c < (number - 1):                             #starting with 2, the number in question gets divided by every number smaller than the number
+    if number % c == 0:
+        #print("even division with", c)
+        divisors.append(c)                          #if divisors are found, they are put into the divisor list
+    c += 1
+
+divisors.append(number) 
+
+
+if len(divisors) == 2 and number != 2:
+    print("Your number", number, "is prime!")
+else:
+    print("Your number", number, "is not prime")
+    print("it is divisible by", divisors)
